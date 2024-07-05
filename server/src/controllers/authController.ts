@@ -4,6 +4,7 @@ import catchAsync from "../utilities/catchAsync";
 import User from "../models/User";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { AuthorizedRequest } from "../types/AuthorizedRequest";
 
 export const register = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -13,7 +14,7 @@ export const register = catchAsync(
       expiresIn: "30d",
     });
 
-    res.json({
+    res.status(201).json({
       status: "success",
       message: "User created successfully!",
       token,
@@ -58,7 +59,7 @@ export const login = catchAsync(
 );
 
 export const protect = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
     const headersJwt = req.headers.authorization?.split(" ")?.at(1);
     if (!headersJwt) return next(new AppError(401, "Unauthorized"));
 
@@ -67,6 +68,7 @@ export const protect = catchAsync(
     const user = await User.findById((token as { id: string }).id);
     if (!user) return next(new AppError(401, "Unauthorized"));
 
+    req.user = user;
     next();
   }
 );
