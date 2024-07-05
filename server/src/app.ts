@@ -1,7 +1,8 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
-import UserRouter from "./routes/userRoutes";
 import errorController from "./controllers/errorController";
+import UserRouter from "./routes/userRoutes";
+import TransactionRouter from "./routes/transactionsRoute";
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 //routing api
 app.use("/api/auth", UserRouter);
+app.use("/api/transactions", TransactionRouter);
 
 app.use(errorController);
 
