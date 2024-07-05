@@ -16,3 +16,5 @@ class AppError extends Error {
     return this.isOperational;
   }
 }
+
+export default AppError;
