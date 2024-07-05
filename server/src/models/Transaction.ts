@@ -4,7 +4,7 @@ import { TransactionType } from "../types/TransactionType";
 const TransactionSchema = new mongoose.Schema<TransactionType>({
   transaction_owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   transaction_date: {
-    type: String,
+    type: Date,
     required: [true, "Please provide transaction date"],
   },
   transaction_value: {

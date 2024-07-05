@@ -5,7 +5,7 @@ export interface UserInterface {
   lastName: string;
   email: string;
   password: string;
-  passwordConfirm: string;
+  passwordConfirm: string | undefined;
   available_balance: number;
   saving_balance: number;
   loan_balance: number;
@@ -13,7 +13,7 @@ export interface UserInterface {
 
   savings: [
     {
-      saving_date: string;
+      saving_date: Date;
       saving_value: number;
       source: string;
       status: "finished" | "canceled" | "processing";
@@ -42,7 +42,7 @@ export interface UserInterface {
     {
       laon_reason: string;
       loan_value: number;
-      loan_date: string;
+      loan_date: Date;
       loan_resource: string;
     }
   ];

@@ -16,6 +16,14 @@ const errorController = function (
   }
 
   if (process.env.NODE_ENV === "production") {
+    // malformed jwt handlnig
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({
+        status: "fail",
+        message: "Unauthorized",
+      });
+    }
+
     //duplicate entries error handling
     if (error.code && error.code === 11000) {
       const [[key, value]] = Object.entries(error.keyValue);

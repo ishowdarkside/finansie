@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { UserInterface } from "../types/UserTypes";
+import bcrypt from "bcrypt";
 
 const UserSchema = new mongoose.Schema<UserInterface>(
   {
@@ -58,7 +59,7 @@ const UserSchema = new mongoose.Schema<UserInterface>(
     ],
     savings: [
       {
-        saving_date: String,
+        saving_date: Date,
         saving_value: Number,
         source: String,
         status: {
@@ -91,7 +92,7 @@ const UserSchema = new mongoose.Schema<UserInterface>(
         laon_reason: String,
         loan_resource: String,
         loan_value: String,
-        loan_date: String,
+        loan_date: Date,
       },
     ],
   },
@@ -99,6 +100,14 @@ const UserSchema = new mongoose.Schema<UserInterface>(
     timestamps: true,
   }
 );
+
+UserSchema.pre("save", function (next) {
+  this.passwordConfirm = undefined;
+  bcrypt.hash(this.password, 10, (err, encrypted) => {
+    this.password = encrypted;
+    next();
+  });
+});
 
 const User = mongoose.model("User", UserSchema);
 
