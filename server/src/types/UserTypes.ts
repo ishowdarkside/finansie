@@ -1,30 +1,20 @@
-enum transactionStatus {
-  "hold",
-  "in progress",
-  "finished",
-}
+import { TransactionType } from "./TransactionType";
 
-interface UserInterface {
+export interface UserInterface {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
+  passwordConfirm: string;
   available_balance: number;
-  saving_balance: string;
+  saving_balance: number;
   loan_balance: number;
-  transactions: [
-    {
-      transaction_date: string;
-      source: string;
-      transaction_value: number;
-      status: "finished" | "processing" | "canceled";
-    }
-  ];
+  transactions: TransactionType[];
 
   savings: [
     {
-      transaction_date: string;
-      transaction_value: number;
+      saving_date: string;
+      saving_value: number;
       source: string;
       status: "finished" | "canceled" | "processing";
     }
@@ -50,10 +40,10 @@ interface UserInterface {
 
   loan: [
     {
-      reasong: string;
+      laon_reason: string;
       loan_value: number;
       loan_date: string;
-      loadn_resource: string;
+      loan_resource: string;
     }
   ];
 }
