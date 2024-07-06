@@ -1,3 +1,4 @@
+import { BudgetPlanType } from "./BudgetPlanType";
 import { TransactionType } from "./TransactionType";
 
 export interface UserInterface {
@@ -21,14 +22,7 @@ export interface UserInterface {
     }
   ];
 
-  budget_plan: [
-    {
-      month: string;
-      year: number;
-      item_list: [{ value: string; isBought: boolean }];
-      budget: number;
-    }
-  ];
+  budget_plan: BudgetPlanType[];
 
   wishlist: [
     {

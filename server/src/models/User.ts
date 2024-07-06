@@ -60,9 +60,8 @@ const UserSchema = new mongoose.Schema<UserInterface>(
     savings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Saving" }],
     budget_plan: [
       {
-        month: String,
-        year: Number,
-        item_list: [{ value: String, isBought: Boolean }],
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Budget",
       },
     ],
 
