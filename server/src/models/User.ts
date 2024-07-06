@@ -67,7 +67,7 @@ const UserSchema = new mongoose.Schema<UserInterface>(
 
     wishlist: [
       {
-        item: String,
+        wishlist_item: String,
         price: Number,
         total_saved: Number,
         priority: {

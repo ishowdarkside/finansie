@@ -4,7 +4,7 @@ export interface BudgetPlanType {
   budget_owner: mongoose.Types.ObjectId;
   month: number;
   year: number;
-  item_list: { value: string; isBought: boolean }[];
+  item_list: { item_name: string; isBought: boolean }[];
   budget_value: number;
-  id: string;
+  id: mongoose.Types.ObjectId;
 }

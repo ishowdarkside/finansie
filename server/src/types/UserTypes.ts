@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { BudgetPlanType } from "./BudgetPlanType";
 import { TransactionType } from "./TransactionType";
 
@@ -22,11 +23,12 @@ export interface UserInterface {
     }
   ];
 
-  budget_plan: BudgetPlanType[];
+  budget_plan: mongoose.Types.ObjectId[];
 
   wishlist: [
     {
-      item: string;
+      _id?: mongoose.Types.ObjectId;
+      wishlist_item: string;
       price: number;
       total_saved: number;
       priority: "low" | "medium" | "high";

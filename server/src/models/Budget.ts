@@ -11,7 +11,7 @@ const BudgetSchema = new mongoose.Schema<BudgetPlanType>({
     type: Number,
     required: [true, "Please provide budget value"],
   },
-  item_list: [{ value: String, isBought: Boolean }],
+  item_list: [{ item_name: String, isBought: Boolean }],
   month: {
     type: Number,
     required: [true, "Please provide budget month"],
