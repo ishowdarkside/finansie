@@ -1,11 +1,9 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import Transaction from "../models/Transaction";
-import catchAsync from "../utilities/catchAsync";
-import { AuthorizedRequest } from "../types/AuthorizedRequest";
 import User from "../models/User";
+import { AuthorizedRequest } from "../types/AuthorizedRequest";
 import AppError from "../utilities/AppError";
-import { TransactionType } from "../types/TransactionType";
-import mongoose from "mongoose";
+import catchAsync from "../utilities/catchAsync";
 
 export const createTransaction = catchAsync(
   async (req: AuthorizedRequest, res: Response, next: NextFunction) => {

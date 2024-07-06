@@ -38,6 +38,7 @@ export const login = catchAsync(
       );
 
     const compare = await bcrypt.compare(password, user.password);
+
     if (!compare)
       return next(
         new AppError(
