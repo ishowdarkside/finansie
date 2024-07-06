@@ -57,17 +57,7 @@ const UserSchema = new mongoose.Schema<UserInterface>(
     transactions: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Transaction" },
     ],
-    savings: [
-      {
-        saving_date: Date,
-        saving_value: Number,
-        source: String,
-        status: {
-          type: String,
-          enum: ["completed", "canceled", "processing"],
-        },
-      },
-    ],
+    savings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Saving" }],
     budget_plan: [
       {
         month: String,
@@ -102,6 +92,8 @@ const UserSchema = new mongoose.Schema<UserInterface>(
 );
 
 UserSchema.pre("save", function (next) {
+  if (!this.isNew) return next();
+
   this.passwordConfirm = undefined;
   bcrypt.hash(this.password, 10, (err, encrypted) => {
     this.password = encrypted;

@@ -4,6 +4,7 @@ import errorController from "./controllers/errorController";
 import UserRouter from "./routes/userRoutes";
 import BalanceRouter from "./routes/BalanceRouter";
 import TransactionRouter from "./routes/transactionsRoute";
+import SavingsRouter from "./routes/SavingsRouter";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use("/api/auth", UserRouter);
 app.use("/api/transactions", TransactionRouter);
 app.use("/api/balance", BalanceRouter);
+app.use("/api/savings", SavingsRouter);
 
 app.use(errorController);
 
