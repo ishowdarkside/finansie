@@ -37,10 +37,12 @@ export interface UserInterface {
 
   loan: [
     {
-      laon_reason: string;
+      loan_reason: string;
       loan_value: number;
       loan_date: Date;
+      _id?: mongoose.Types.ObjectId;
       loan_resource: string;
+      loan_saved_amount: number;
     }
   ];
 }

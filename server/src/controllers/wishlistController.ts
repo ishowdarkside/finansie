@@ -84,11 +84,16 @@ export const updateSavedMoney = catchAsync(
 
     await user.save({ validateBeforeSave: false });
 
+    let message =
+      item.price - item.total_saved === 0
+        ? `You have saved enough money to buy ${item.wishlist_item}`
+        : `${saved_balance}KM added to  ${item.wishlist_item} milestone. ${
+            item.price - item.total_saved
+          } more to go`;
+
     res.status(200).json({
       status: "success",
-      message: `${saved_balance}KM added to  ${item.wishlist_item} milestone. ${
-        item.price - item.total_saved
-      } more to go`,
+      message,
     });
   }
 );

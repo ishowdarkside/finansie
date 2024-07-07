@@ -5,6 +5,7 @@ import UserRouter from "./routes/userRoutes";
 import BalanceRouter from "./routes/BalanceRouter";
 import TransactionRouter from "./routes/transactionsRoute";
 import SavingsRouter from "./routes/SavingsRouter";
+import LoanRouter from "./routes/LoanRouter";
 import BudgetRouter from "./routes/BudgetRoutes";
 import WishlistRouter from "./routes/wishlistRouter";
 
@@ -22,6 +23,7 @@ app.use("/api/balance", BalanceRouter);
 app.use("/api/savings", SavingsRouter);
 app.use("/api/budget", BudgetRouter);
 app.use("/api/wishlist", WishlistRouter);
+app.use("/api/loan", LoanRouter);
 
 app.use(errorController);
 

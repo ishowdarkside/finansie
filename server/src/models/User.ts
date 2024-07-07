@@ -78,10 +78,11 @@ const UserSchema = new mongoose.Schema<UserInterface>(
     ],
     loan: [
       {
-        laon_reason: String,
+        loan_reason: String,
         loan_resource: String,
-        loan_value: String,
+        loan_value: Number,
         loan_date: Date,
+        loan_saved_amount: Number,
       },
     ],
   },
