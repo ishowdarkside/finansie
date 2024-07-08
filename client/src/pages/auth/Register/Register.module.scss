@@ -1,0 +1,25 @@
+.registerPage {
+  height: 100dvh;
+  display: flex;
+
+  aside {
+    flex-basis: 20%;
+    padding: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1c2434;
+  }
+}
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+
+  h1 {
+    font-size: 9rem;
+    font-weight: 400;
+  }
+}
