@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.1",
+    "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.24.1",
     "sass": "^1.77.6"
   },

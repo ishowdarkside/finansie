@@ -2,6 +2,9 @@ import styles from "./RegisterPanel.module.scss";
 import { useForm } from "react-hook-form";
 import { RegistrationTypes } from "../../../types/RegistrationTypes";
 import Input from "../Input/Input";
+import { registerService } from "../../../services/auth";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterPanel(): JSX.Element {
   const {
@@ -10,7 +13,20 @@ export default function RegisterPanel(): JSX.Element {
     handleSubmit,
   } = useForm<RegistrationTypes>();
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const navigate = useNavigate();
+
+  const onSubmit = handleSubmit(async (data) => {
+    const serverResponse = await registerService(data);
+    if (serverResponse?.data.status === "fail") {
+      return toast.error(
+        serverResponse.data.errors?.[0] || serverResponse.data.messsage
+      );
+    }
+
+    toast.success(serverResponse?.data.message);
+    localStorage.setItem("token", serverResponse?.data.token);
+    navigate("/app");
+  });
 
   return (
     <div className={styles.formContainer}>
