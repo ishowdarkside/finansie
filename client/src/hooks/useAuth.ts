@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCurrentlyLoggedInUser } from "../services/auth";
+import { UserInterface } from "../types/UserTypes";
 
 export function useUser() {
   const token = localStorage.getItem("token");

@@ -1,6 +1,7 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { LoginTypes } from "../types/LoginTypes";
 import { RegistrationTypes } from "../types/RegistrationTypes";
+import { UserInterface } from "../types/UserTypes";
 import { BASE_URL } from "../utils/url";
 export async function registerService(formData: RegistrationTypes) {
   try {
@@ -40,7 +41,7 @@ export async function getCurrentlyLoggedInUser(token: string) {
     });
 
     if (response.data.status === "fail") return response.data;
-    return response.data.user;
+    return response.data.user as UserInterface;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       return err.response;

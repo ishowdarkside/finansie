@@ -1,0 +1,8 @@
+.panelsWrapper {
+  display: flex;
+  gap: 3rem;
+  & > * {
+    flex-grow: 1;
+    height: 15rem;
+  }
+}

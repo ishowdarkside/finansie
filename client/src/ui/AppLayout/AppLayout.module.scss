@@ -1,0 +1,9 @@
+.appStyles {
+  display: grid;
+  grid-template-columns: 30rem 1fr;
+  height: 100dvh;
+  .mainPortion {
+    padding: 9rem 14rem;
+    overflow: auto;
+  }
+}
