@@ -14,19 +14,6 @@
     font-weight: 200;
   }
 
-  input {
-    outline: none;
-    border: 1px solid #e2e8f0;
-    background-color: transparent;
-    padding: 1.3rem 2.2rem;
-    border-radius: 4px;
-
-    &:placeholder {
-      color: #64748b;
-      font-weight: 400;
-    }
-  }
-
   form {
     display: flex;
     flex-direction: column;

@@ -1,0 +1,25 @@
+.inputWrapper {
+  display: flex;
+  gap: 0.3rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  input {
+    outline: none;
+    border: 1px solid #e2e8f0;
+    background-color: transparent;
+    padding: 1.3rem 2.2rem;
+    border-radius: 4px;
+
+    &:placeholder {
+      color: #64748b;
+      font-weight: 400;
+    }
+  }
+}
+
+.errorMsg {
+  color: #dc2626;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+}
