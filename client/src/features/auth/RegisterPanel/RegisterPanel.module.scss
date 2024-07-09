@@ -29,3 +29,17 @@
     border: none;
   }
 }
+
+.routeSwitch {
+  font-size: 1.3rem;
+  font-weight: 400;
+
+  display: flex;
+  color: #212b36;
+  justify-content: center;
+  gap: 0.4rem;
+  a {
+    color: #3c50e0;
+    text-decoration: none;
+  }
+}

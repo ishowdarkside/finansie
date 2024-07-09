@@ -1,7 +1,5 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { RegistrationTypes } from "../../../types/RegistrationTypes";
 import styles from "./Input.module.scss";
-import { LoginTypes } from "../../../types/LoginTypes";
 
 interface InputTypes {
   inputType: string;
@@ -13,7 +11,7 @@ interface InputTypes {
     | "firstName"
     | "lastName";
   placeholder: string;
-  register: UseFormRegister<RegistrationTypes | LoginTypes>;
+  register: UseFormRegister<any>;
   required: string | boolean;
   errors: FieldErrors;
 }

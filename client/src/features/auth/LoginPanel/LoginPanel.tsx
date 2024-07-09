@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { loginService } from "../../../services/auth";
 import toast from "react-hot-toast";
 import Input from "../Input/Input";
+import { Link } from "react-router-dom";
 
 export default function LoginPanel(): JSX.Element {
   const {
@@ -17,9 +18,10 @@ export default function LoginPanel(): JSX.Element {
 
   const onSubmit = handleSubmit(async (data) => {
     const serverResponse = await loginService(data);
+    console.log(serverResponse);
     if (serverResponse?.data.status === "fail") {
       return toast.error(
-        serverResponse.data.errors?.[0] || serverResponse.data.messsage
+        serverResponse.data.errors?.[0] || serverResponse.data.message
       );
     }
 
@@ -30,7 +32,7 @@ export default function LoginPanel(): JSX.Element {
 
   return (
     <div className={styles.formContainer}>
-      <h3>Register to get started</h3>
+      <h3>Login to get started</h3>
       <form onSubmit={onSubmit}>
         <Input
           inputType="email"
@@ -50,6 +52,10 @@ export default function LoginPanel(): JSX.Element {
           errors={errors}
         />
 
+        <span className={styles.routeSwitch}>
+          Don't have an account yet?
+          <Link to="/auth/register">Register here!</Link>
+        </span>
         <button type="submit">Submit</button>
       </form>
     </div>

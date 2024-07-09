@@ -5,6 +5,7 @@ import Input from "../Input/Input";
 import { registerService } from "../../../services/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function RegisterPanel(): JSX.Element {
   const {
@@ -19,7 +20,7 @@ export default function RegisterPanel(): JSX.Element {
     const serverResponse = await registerService(data);
     if (serverResponse?.data.status === "fail") {
       return toast.error(
-        serverResponse.data.errors?.[0] || serverResponse.data.messsage
+        serverResponse.data.errors?.[0] || serverResponse.data.message
       );
     }
 
@@ -77,6 +78,9 @@ export default function RegisterPanel(): JSX.Element {
           errors={errors}
         />
 
+        <span className={styles.routeSwitch}>
+          Already have an account? <Link to="/auth/login">Login here</Link>
+        </span>
         <button type="submit">Submit</button>
       </form>
     </div>
