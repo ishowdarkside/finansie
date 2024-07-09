@@ -18,7 +18,6 @@ export default function LoginPanel(): JSX.Element {
 
   const onSubmit = handleSubmit(async (data) => {
     const serverResponse = await loginService(data);
-    console.log(serverResponse);
     if (serverResponse?.data.status === "fail") {
       return toast.error(
         serverResponse.data.errors?.[0] || serverResponse.data.message
