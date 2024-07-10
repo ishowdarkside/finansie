@@ -1,0 +1,57 @@
+.budgetPlanningWrapper {
+  background-color: #ffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 3rem 0;
+  max-height: 20rem;
+  overflow: auto;
+}
+
+.panelTitle {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  display: block;
+  padding: 0 3rem;
+}
+
+.budgetItem {
+  display: flex;
+  gap: 3rem;
+  padding: 1.6rem 3rem;
+  font-weight: 400;
+  align-items: center;
+}
+
+.boughtItem {
+  background-color: #fafbff;
+}
+
+.checkbox {
+  height: 16px;
+  width: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid #64748b;
+}
+
+.createBudgetCTA {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+
+  button {
+    border-radius: 4px;
+    background-color: #3c50e0;
+    color: #ffff;
+    padding: 1.3rem;
+    cursor: pointer;
+    border: none;
+  }
+}
+
+.checkedItem {
+  border: 1px solid #3c50e0 !important;
+  background-color: #3c50e0 !important;
+}

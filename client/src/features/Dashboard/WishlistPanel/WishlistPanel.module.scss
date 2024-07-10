@@ -1,0 +1,59 @@
+.wishlistPanelWrapper {
+  background-color: #ffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  max-height: 20rem;
+  padding: 3rem 0;
+  overflow: auto;
+}
+
+.panelTitle {
+  margin-bottom: 2rem;
+  display: block;
+  font-size: 1.8rem;
+  padding: 0 3rem;
+  font-weight: 500;
+}
+
+.itemsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.wishlistItemName {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.fullFilledBar {
+  width: 100%;
+  background-color: #fafbff;
+  height: 6px;
+  position: relative;
+  margin-top: 1rem;
+  border-radius: 100px;
+}
+
+.actualProgress {
+  border-radius: 100px;
+  background-color: #3c50e0;
+  position: absolute;
+  left: 0;
+  height: 7px;
+}
+
+.wishlistItem {
+  padding: 3rem;
+}
+
+.wishlistFullfiled {
+  background-color: #fafbff;
+}
+
+.status {
+  text-align: right;
+  display: block;
+  font-weight: 400;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
