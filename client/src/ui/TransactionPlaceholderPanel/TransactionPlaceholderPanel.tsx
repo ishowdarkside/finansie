@@ -1,6 +1,6 @@
-import styles from "./LatestTransactions.module.scss";
+import styles from "./TransactionPlaceholderPanel.module.scss";
 
-export default function PlaceholderPanel(): JSX.Element {
+export default function TransactionPlaceholderPanel(): JSX.Element {
   return (
     <div className={styles.placeholderPanel}>
       <span>Transaction</span>

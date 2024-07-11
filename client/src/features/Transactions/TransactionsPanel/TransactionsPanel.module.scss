@@ -3,6 +3,7 @@
   border-radius: 12px;
   border: 1px solid #e2e8f0;
   padding: 3rem 4rem 1rem 3rem;
+  margin-top: 4rem;
 }
 
 .panelTitle {
@@ -30,6 +31,18 @@
   }
 }
 
+.placeholderPanel {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  & > * {
+    justify-self: center;
+  }
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background-color: #f7f9fc;
+}
+
 // Transaction item
 
 .latestTransactionItem {
@@ -39,7 +52,6 @@
   &:not(:last-of-type) {
     border-bottom: 1px solid #c7c7c7;
   }
-
   & > * {
     justify-self: center;
     align-self: center;

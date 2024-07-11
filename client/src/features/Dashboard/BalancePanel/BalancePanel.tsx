@@ -10,10 +10,12 @@ export default function BalancePanel({
 }: BalancePanelPropTypes): JSX.Element {
   const {
     data: { available_balance, loan_balance, saving_balance },
+    isPending,
   } = useUser();
 
+  if (isPending) return <h1>LOADING...</h1>;
   return (
-    <div className={styles.panel}>
+    <div className={styles.panel} onClick={() => {}}>
       <span className={styles.balanceType}>
         {balanceType === "available_balance" && "Available Balance"}{" "}
         {balanceType === "savings" && "Savings"}

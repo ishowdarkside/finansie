@@ -3,3 +3,38 @@
   padding: 4rem;
   color: #fff;
 }
+
+.companyName {
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.sidebarList {
+  list-style: none;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+
+  li {
+    display: flex;
+    padding: 1rem 1.5rem;
+    border-radius: 3px;
+    align-items: center;
+    gap: 1.4rem;
+
+    &:has(:global(.active)) {
+      background-color: #333a48;
+    }
+
+    a {
+      text-decoration: none;
+      color: #ffff;
+      font-weight: 400;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+:global(.active) {
+}

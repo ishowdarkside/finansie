@@ -4,5 +4,6 @@ export interface TransactionType {
   source: string;
   transaction_value: number;
   transaction_type: "income" | "charge";
+  _id: string;
   status: "finished" | "processing" | "canceled";
 }

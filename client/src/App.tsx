@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import AppLayout from "./ui/AppLayout/AppLayout";
 import Dashboard from "./pages/app/Dashboard/Dashboard";
 import Protect from "./features/Protect/Protect";
+import Transactions from "./pages/app/Transactions/Transactions";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ function App() {
             >
               <Route index element={<Navigate to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="transactions" element={<Transactions />} />
             </Route>
           </Routes>
         </BrowserRouter>

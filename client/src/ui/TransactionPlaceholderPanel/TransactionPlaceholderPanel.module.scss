@@ -1,0 +1,11 @@
+.placeholderPanel {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  & > * {
+    justify-self: center;
+  }
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background-color: #f7f9fc;
+}
