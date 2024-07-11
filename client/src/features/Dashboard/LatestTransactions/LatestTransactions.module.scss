@@ -1,0 +1,76 @@
+.transactionPanel {
+  background-color: #ffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 3rem 4rem;
+}
+
+.panelTitle {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.titleWrapper {
+  margin-bottom: 3rem;
+  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    font-size: 1.4rem;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-weight: 400;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #3c50e0;
+  }
+}
+
+.placeholderPanel {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  & > * {
+    justify-self: center;
+  }
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background-color: #f7f9fc;
+}
+
+// Transaction item
+
+.latestTransactionItem {
+  padding: 3rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  & > * {
+    justify-self: center;
+    align-self: center;
+  }
+
+  span {
+    font-weight: 400;
+  }
+}
+
+.transactionType {
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+
+.chargeStyle {
+  color: #d34053;
+  background-color: rgba(#d34053, 0.08);
+}
+
+.incomeStyles {
+  color: #219653;
+  background-color: rgba(#219653, 0.08);
+}

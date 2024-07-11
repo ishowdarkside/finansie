@@ -11,9 +11,12 @@ export default function BudgetPlanning(): JSX.Element {
   const currentYear = new Date().getFullYear();
   return (
     <div className={styles.budgetPlanningWrapper}>
-      <span className={styles.panelTitle}>
-        Budget Plan for {currentMonth} {currentYear}
-      </span>
+      <div className={styles.titleContainer}>
+        <span className={styles.panelTitle}>
+          Budget Plan for {currentMonth} {currentYear}
+        </span>
+        <button>View More</button>
+      </div>
 
       {data === "not-found" && (
         <div className={styles.createBudgetCTA}>

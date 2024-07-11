@@ -13,7 +13,10 @@ export default function WishlistPanel(): JSX.Element {
 
   return (
     <div className={styles.wishlistPanelWrapper}>
-      <span className={styles.panelTitle}>Wishlist Items</span>
+      <div className={styles.titleContainer}>
+        <span className={styles.panelTitle}>Wishlist Items</span>
+        <button>View More</button>
+      </div>
       <div className={styles.itemsWrapper}>
         {wishlist.map((item: WishlistItemTypes) => (
           <WishlistItem item={item} key={item._id} />

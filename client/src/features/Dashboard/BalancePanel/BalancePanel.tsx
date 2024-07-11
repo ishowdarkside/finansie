@@ -15,9 +15,9 @@ export default function BalancePanel({
   return (
     <div className={styles.panel}>
       <span className={styles.balanceType}>
-        {balanceType === "available_balance" && "Raspolozivi iznos"}{" "}
-        {balanceType === "savings" && "Usteda"}
-        {balanceType === "loan" && "Dugovanja"}
+        {balanceType === "available_balance" && "Available Balance"}{" "}
+        {balanceType === "savings" && "Savings"}
+        {balanceType === "loan" && "Loans"}
       </span>
 
       <span className={styles.balanceAmount}>

@@ -1,5 +1,6 @@
 import BalancePanel from "../../../features/Dashboard/BalancePanel/BalancePanel";
 import BudgetPlanning from "../../../features/Dashboard/BudgetPlanning/BudgetPlanning";
+import LatestTransactions from "../../../features/Dashboard/LatestTransactions/LatestTransactions";
 import WishlistPanel from "../../../features/Dashboard/WishlistPanel/WishlistPanel";
 import styles from "./Dashboard.module.scss";
 export default function Dashboard(): JSX.Element {
@@ -13,6 +14,9 @@ export default function Dashboard(): JSX.Element {
       <div className={styles.budgetWishlistWrapper}>
         <BudgetPlanning />
         <WishlistPanel />
+      </div>
+      <div className={styles.transactionsContainer}>
+        <LatestTransactions />
       </div>
     </>
   );
