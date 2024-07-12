@@ -1,0 +1,35 @@
+.paginationPanel {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnWrapper {
+  display: flex;
+  gap: 0.5rem;
+
+  button {
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    background-color: #3c50e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+    img {
+      max-width: 2rem;
+    }
+  }
+}
+
+.lowerOpacity {
+  opacity: 0.5;
+}

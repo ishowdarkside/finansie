@@ -14,6 +14,7 @@ export default function Protect({
   const { data, isPending } = useUser();
 
   if (isPending && !data) return <h1>LOADING...</h1>;
+  if (!isPending && !data) return <Navigate to="/auth" />;
   if (!isPending && !data.email) return <Navigate to="/auth" />;
 
   return children;

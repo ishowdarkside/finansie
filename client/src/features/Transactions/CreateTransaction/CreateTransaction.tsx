@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import styles from "./CreateTransaction.module.scss";
 import { TransactionType } from "../../../types/TransactionType";
+import { useCreateTransaction } from "../../../hooks/useTransactions";
 
 interface PropTypes {
   changeModalState: () => void;
@@ -15,11 +16,16 @@ export default function CreateTransaction({
     formState: { errors },
   } = useForm<TransactionType>();
 
+  const { mutate } = useCreateTransaction();
+
   return (
     <div className={styles.overlay}>
       <form
         className={styles.createTransactionForm}
-        onSubmit={handleSubmit((data) => console.log(data))}
+        onSubmit={handleSubmit((data) => {
+          changeModalState();
+          mutate(data);
+        })}
       >
         <div className={styles.titleWrapper}>
           <h2 className={styles.formHeading}>Add Transaction</h2>

@@ -18,3 +18,25 @@ export async function getMyTransactions() {
   if (response.data.transactions)
     return response.data.transactions as TransactionType[];
 }
+
+export async function createTransaction(transaction: TransactionType) {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/api/transactions`,
+      transaction,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      console.log(err);
+    }
+  }
+}

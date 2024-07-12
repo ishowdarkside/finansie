@@ -10,7 +10,9 @@ export default function LatestTransactionItem({
   return (
     <div className={styles.latestTransactionItem}>
       <span>{transaction.source}</span>
-      <span>{format(transaction.transaction_date, "mm/dd/yyyy")}</span>
+      <span>
+        {format(new Date(transaction.transaction_date), "dd/MM/yyyy")}
+      </span>
       <span
         className={`${styles.transactionType} ${
           transaction.transaction_type === "charge"
