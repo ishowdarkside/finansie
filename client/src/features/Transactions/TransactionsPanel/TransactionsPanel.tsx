@@ -19,10 +19,15 @@ export default function LatestTransactions({
     return <span>no transaction</span>;
 
   let show = 6;
-  let paginatedTransactions = transactions.slice((page - 1) * 6, show * page);
+  let paginatedTransactions = transactions.slice(
+    (page - 1) * show,
+    show * page
+  );
+
+  let currentCount = transactions.slice(0, show * page).length;
 
   function incrementPage() {
-    if (page + 1 > transactions!.length / 6) return;
+    if (page + 1 > Math.round(transactions!.length / 6 + 1)) return;
     setPage((curr) => curr + 1);
   }
 
@@ -30,7 +35,7 @@ export default function LatestTransactions({
     if (page - 1 === 0) return;
     setPage((curr) => curr - 1);
   }
-  console.log(paginatedTransactions, page);
+
   return (
     <>
       <div className={styles.transactionPanel}>
@@ -46,7 +51,7 @@ export default function LatestTransactions({
         <TransactionPagination
           transactionsCount={transactions.length}
           page={page}
-          paginatedTransactionsCount={paginatedTransactions.length * page}
+          currentCount={currentCount}
           incrementPage={incrementPage}
           decrementPage={decrementPage}
         />

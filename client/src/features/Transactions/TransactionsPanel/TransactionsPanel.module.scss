@@ -3,7 +3,10 @@
   border-radius: 12px;
   border: 1px solid #e2e8f0;
   padding: 3rem 4rem 1rem 3rem;
-  margin-top: 4rem;
+  position: relative;
+  min-height: 79rem;
+  max-height: 79rem;
+  overflow: auto;
 }
 
 .panelTitle {
@@ -46,9 +49,10 @@
 // Transaction item
 
 .latestTransactionItem {
+  position: relative;
   padding: 3rem 4rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   &:not(:last-of-type) {
     border-bottom: 1px solid #c7c7c7;
   }
@@ -76,4 +80,17 @@
 .incomeStyles {
   color: #219653;
   background-color: rgba(#219653, 0.08);
+}
+
+.source {
+  text-align: center;
+}
+
+.editBtn {
+  position: absolute;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  right: 0;
+  border: none;
 }

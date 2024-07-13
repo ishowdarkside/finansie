@@ -7,6 +7,7 @@ export default function TransactionPlaceholderPanel(): JSX.Element {
       <span>Invoice date</span>
       <span>Type of transaction</span>
       <span>Value</span>
+      <span>Status</span>
     </div>
   );
 }

@@ -38,14 +38,14 @@ export function useCreateTransaction() {
       return { previousTransactions };
     },
 
-    onError: (err, newTransaction, context) => {
+    onError: (err: Error, newTransaction, context) => {
+      toast.error(err.message);
       queryClient.setQueryData(["transactions"], context?.previousTransactions);
     },
 
     onSettled: (res?: { status: string; message: string }) => {
-      console.log(res);
+      if (res && res.status === "fail") return toast.error(res.message);
       if (res && res.status === "success") toast.success(res.message);
-      if (res && res.status === "fail") toast.error(res.message);
       queryClient.invalidateQueries({ queryKey: ["transaction"] });
     },
   });

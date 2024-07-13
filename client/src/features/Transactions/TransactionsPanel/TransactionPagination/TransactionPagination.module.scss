@@ -3,6 +3,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  position: absolute;
+  bottom: 3rem;
+  width: 100%;
+
+  max-width: 125rem;
+
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .btnWrapper {
@@ -32,4 +41,9 @@
 
 .lowerOpacity {
   opacity: 0.5;
+}
+
+.transactionCount {
+  flex-grow: 1;
+  text-align: center;
 }

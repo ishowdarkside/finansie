@@ -36,7 +36,7 @@ export async function createTransaction(transaction: TransactionType) {
     return response.data;
   } catch (err) {
     if (axios.isAxiosError(err)) {
-      console.log(err);
+      throw new Error(err.response?.data.message);
     }
   }
 }
