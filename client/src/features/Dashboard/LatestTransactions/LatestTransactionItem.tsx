@@ -22,7 +22,9 @@ export default function LatestTransactionItem({
       >
         {transaction.transaction_type.toUpperCase()}
       </span>
-      <span>40KM</span>
+      <span>{transaction.transaction_value}</span>
+
+      <span>{transaction.status.toUpperCase()}</span>
     </div>
   );
 }

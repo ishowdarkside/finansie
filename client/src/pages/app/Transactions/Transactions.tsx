@@ -1,18 +1,14 @@
 import { useState } from "react";
-import CreateTransaction from "../../../features/Transactions/CreateTransaction/CreateTransaction";
+import CreateEditTransaction from "../../../features/Transactions/CreateTransaction/CreateEditTransaction";
 import TransactionsPanel from "../../../features/Transactions/TransactionsPanel/TransactionsPanel";
+import { useTransactionContext } from "../../../context/TransactionContext";
 
 export default function Transactions(): JSX.Element {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  function changeModalState() {
-    setIsModalOpen((curr) => !curr);
-  }
-
+  const { isModalOpen } = useTransactionContext();
   return (
     <>
-      <TransactionsPanel changeModalState={changeModalState} />
-      {isModalOpen && <CreateTransaction changeModalState={changeModalState} />}
+      <TransactionsPanel />
+      {isModalOpen && <CreateEditTransaction />}
     </>
   );
 }

@@ -5,9 +5,9 @@ import styles from "./AppLayout.module.scss";
 export default function AppLayout(): JSX.Element {
   return (
     <>
-      <section className={styles.appStyles}>
+      <section className={`${styles.appStyles}`}>
         <Sidebar />
-        <div className={styles.mainPortion}>
+        <div className={`${styles.mainPortion} global-layout`}>
           <Outlet />
         </div>
       </section>

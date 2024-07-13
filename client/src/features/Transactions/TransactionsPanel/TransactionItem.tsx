@@ -2,12 +2,16 @@ import { TransactionType } from "../../../types/TransactionType";
 import styles from "./TransactionsPanel.module.scss";
 import EditIcon from "../../../assets/editing.png";
 import { format } from "date-fns";
+import { useTransactionContext } from "../../../context/TransactionContext";
 
 export default function TransactionItem({
   transaction,
 }: {
   transaction: TransactionType;
 }): JSX.Element {
+  const { setActiveEditTransaction, changeModalState } =
+    useTransactionContext();
+
   return (
     <div className={styles.latestTransactionItem}>
       <span className={styles.source}>{transaction.source}</span>
@@ -25,7 +29,13 @@ export default function TransactionItem({
       </span>
       <span>{transaction.transaction_value} KM</span>
       <span>{transaction.status.toUpperCase()}</span>
-      <button className={styles.editBtn}>
+      <button
+        className={styles.editBtn}
+        onClick={() => {
+          changeModalState();
+          setActiveEditTransaction(transaction);
+        }}
+      >
         <img src={EditIcon} />
       </button>
     </div>

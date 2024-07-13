@@ -35,7 +35,7 @@
 .latestTransactionItem {
   padding: 3rem 4rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   &:not(:last-of-type) {
     border-bottom: 1px solid #c7c7c7;
   }

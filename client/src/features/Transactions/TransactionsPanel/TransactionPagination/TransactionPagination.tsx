@@ -1,23 +1,24 @@
-import styles from "./TransactionPagination.module.scss";
 import LeftArrow from "../../../../assets/left-arrow.png";
 import RightArrow from "../../../../assets/right-arrow.png";
-import { useEffect, useRef, useState } from "react";
+import { useTransactionContext } from "../../../../context/TransactionContext";
+import { TransactionType } from "../../../../types/TransactionType";
+import styles from "./TransactionPagination.module.scss";
 
 interface PropTypes {
-  incrementPage: () => void;
-  decrementPage: () => void;
   page: number;
   currentCount: number;
+  transactions: TransactionType[];
   transactionsCount: number;
 }
 
 export default function TransactionPagination({
-  incrementPage,
-  decrementPage,
   page,
   currentCount,
+  transactions,
   transactionsCount,
 }: PropTypes): JSX.Element {
+  const { decrementPage, incrementPage } = useTransactionContext();
+
   return (
     <div className={styles.paginationPanel}>
       <span className={styles.transactionCount}>
@@ -31,7 +32,7 @@ export default function TransactionPagination({
           <img src={LeftArrow} />
         </button>
         <button
-          onClick={incrementPage}
+          onClick={() => incrementPage(transactions)}
           className={transactionsCount <= 6 * page ? styles.lowerOpacity : ""}
         >
           <img src={RightArrow} />
