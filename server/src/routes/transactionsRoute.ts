@@ -3,6 +3,7 @@ import { protect } from "../controllers/authController";
 import {
   createTransaction,
   deleteTransaction,
+  getCurrentUsersTransactions,
   updateTransaction,
 } from "../controllers/transactionController";
 
@@ -15,5 +16,7 @@ router
   .route("/:transactionId")
   .patch(updateTransaction)
   .delete(deleteTransaction);
+
+router.get("/myTransactions", getCurrentUsersTransactions);
 
 export default router;

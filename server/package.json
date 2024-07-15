@@ -11,6 +11,7 @@
   "main": "index.js",
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
     "@types/dotenv": "^8.2.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/mongodb": "^4.0.7",
@@ -27,6 +28,7 @@
     "braces": "^3.0.3",
     "chokidar": "^3.6.0",
     "concat-map": "^0.0.1",
+    "cors": "^2.8.5",
     "create-require": "^1.1.1",
     "debug": "^4.3.5",
     "diff": "^4.0.2",

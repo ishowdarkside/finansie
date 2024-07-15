@@ -30,7 +30,7 @@ const errorController = function (
 
       return res.status(400).json({
         status: "fail",
-        messsage: `${key} '${value}' already in use!`,
+        message: `${key} '${value}' already in use!`,
       });
     }
 

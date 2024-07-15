@@ -40,15 +40,25 @@ export default function CreateEditTransaction(): JSX.Element {
       <form
         className={styles.createTransactionForm}
         onSubmit={handleSubmit((data) => {
-          changeModalState();
           activeEditTransaction
-            ? updateMutation({
-                transactionId: activeEditTransaction._id as string,
-                formData: data,
-              })
-            : createMutation(data);
-
-          setActiveEditTransaction(null);
+            ? updateMutation(
+                {
+                  transactionId: activeEditTransaction._id as string,
+                  formData: data,
+                },
+                {
+                  onSuccess: () => {
+                    changeModalState;
+                    setActiveEditTransaction(null);
+                  },
+                }
+              )
+            : createMutation(data, {
+                onSuccess: () => {
+                  changeModalState();
+                  setActiveEditTransaction(null);
+                },
+              });
         })}
       >
         <div className={styles.titleWrapper}>

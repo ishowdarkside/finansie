@@ -73,3 +73,22 @@ export const protect = catchAsync(
     next();
   }
 );
+
+export const getUser = catchAsync(
+  async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
+    const headersJwt = req.headers.authorization?.split(" ")?.at(1);
+    if (!headersJwt) return next(new AppError(401, "Unauthorized"));
+
+    const token = await jwt.verify(headersJwt, process.env.JWT_SECRET!);
+
+    const user = await User.findById((token as { id: string }).id).select(
+      "-password"
+    );
+    if (!user) return next(new AppError(401, "Unauthorized"));
+
+    res.status(200).json({
+      status: "success",
+      user,
+    });
+  }
+);

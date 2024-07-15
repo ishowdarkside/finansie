@@ -6,16 +6,32 @@ import { BudgetPlanType } from "../types/BudgetPlanType";
 import AppError from "../utilities/AppError";
 import catchAsync from "../utilities/catchAsync";
 import mongoose from "mongoose";
+import { months } from "../utilities/constants";
 
 export const createBudgetPlan = catchAsync(
   async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
-    const user = await User.findById(req.user?.id);
+    const user = await User.findById(req.user?.id).populate("budget_plan");
     if (!user) return next(new AppError(401, "Please login!"));
     const { month, year, item_list, budget_value }: BudgetPlanType = req.body;
 
+    item_list.forEach((e) => (e.isBought = false));
+
+    // prevent duplicate budget plans
+    if (
+      user.budget_plan.some(
+        (budget) => budget.month === month && budget.year === year
+      )
+    )
+      return next(
+        new AppError(
+          400,
+          `Budget plan already exists for ${months[month]} ${year}`
+        )
+      );
+
     if (!item_list || item_list.length === 0)
       return next(
-        new AppError(400, "Budge plan must contain at least 1 item.")
+        new AppError(400, "Budget plan must contain at least 1 item.")
       );
 
     const createdBudget = await Budget.create({
@@ -53,7 +69,7 @@ export const deleteBudgetPlan = catchAsync(
 
     // Finding index of current budget inside users reference collection
     const indexOfBudget = user.budget_plan.findIndex((e) =>
-      e.equals(currentBudget.id)
+      (e as any).equals(currentBudget.id)
     );
 
     user.budget_plan.splice(indexOfBudget, 1);
@@ -124,5 +140,31 @@ export const addItemToBudgetPlan = catchAsync(
       status: "success",
       message: "Item added",
     });
+  }
+);
+
+export const getLatestBudget = catchAsync(
+  async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
+    const user = await User.findById(req.user?.id).populate("budget_plan");
+    if (!user) return next(new AppError(401, "Please login"));
+
+    const currMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+
+    const latestBudget = user.budget_plan.find(
+      (e) => e.month === currMonth && e.year === currentYear
+    );
+
+    if (!latestBudget) {
+      res.status(200).json({
+        status: "fail",
+        latest_budget: "not-found",
+      });
+    } else {
+      res.status(200).json({
+        status: "success",
+        latest_budget: latestBudget,
+      });
+    }
   }
 );

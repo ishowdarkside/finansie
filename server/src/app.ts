@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import errorController from "./controllers/errorController";
 import UserRouter from "./routes/userRoutes";
 import BalanceRouter from "./routes/BalanceRouter";
@@ -12,6 +13,9 @@ import WishlistRouter from "./routes/wishlistRouter";
 dotenv.config();
 
 const app: Express = express();
+
+//cors
+app.use(cors());
 
 /// parse incoming json
 app.use(express.json());

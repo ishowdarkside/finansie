@@ -7,7 +7,26 @@ import catchAsync from "../utilities/catchAsync";
 
 export const createTransaction = catchAsync(
   async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
+    const user = await User.findById(req.user?.id);
+    if (!user) return next(new AppError(401, "Please login"));
+
     const { transaction_value, transaction_type, status, source } = req.body;
+
+    if (transaction_value <= 0)
+      return next(
+        new AppError(400, "Transaction value cannot be less or equal to zero")
+      );
+
+    if (
+      transaction_type === "charge" &&
+      user.available_balance - transaction_value < 0
+    )
+      return next(
+        new AppError(
+          400,
+          "You don't have enough money on your balance to create this transaction."
+        )
+      );
 
     const transaction = await Transaction.create({
       transaction_date: Date.now(),
@@ -18,8 +37,9 @@ export const createTransaction = catchAsync(
       source,
     });
 
-    const user = await User.findById(req.user?.id);
-    user?.transactions.push(transaction.id);
+    user.transactions.push(transaction.id);
+    user.available_balance +=
+      transaction_type === "charge" ? -transaction_value : +transaction_value;
     await user?.save({ validateBeforeSave: false });
 
     res.status(201).json({
@@ -82,5 +102,18 @@ export const deleteTransaction = catchAsync(
     await Transaction.findByIdAndDelete(transaction.id);
 
     res.status(204).json({});
+  }
+);
+
+export const getCurrentUsersTransactions = catchAsync(
+  async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
+    const transactions = await Transaction.find({
+      transaction_owner: req.user?.id,
+    }).sort({ transaction_date: -1 });
+
+    res.status(200).json({
+      status: "success",
+      transactions,
+    });
   }
 );

@@ -23,7 +23,7 @@ export interface UserInterface {
     }
   ];
 
-  budget_plan: mongoose.Types.ObjectId[];
+  budget_plan: BudgetPlanType[];
 
   wishlist: [
     {
