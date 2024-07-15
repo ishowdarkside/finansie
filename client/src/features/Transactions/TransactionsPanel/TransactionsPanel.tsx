@@ -1,5 +1,4 @@
 import { useTransactionContext } from "../../../context/TransactionContext";
-import { usePagination } from "../../../hooks/usePagination";
 import { useMyTransactions } from "../../../hooks/useTransactions";
 import TransactionPlaceholderPanel from "../../../ui/TransactionPlaceholderPanel/TransactionPlaceholderPanel";
 import TransactionItem from "./TransactionItem";
@@ -35,10 +34,9 @@ export default function LatestTransactions(): JSX.Element {
           <TransactionItem transaction={transaction} key={transaction._id} />
         ))}
         <TransactionPagination
-          transactionsCount={transactions.length}
+          transactionsLength={transactions.length}
           page={page}
           currentCount={currentCount}
-          transactions={transactions}
         />
       </div>
     </>

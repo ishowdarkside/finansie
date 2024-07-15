@@ -40,3 +40,40 @@ export async function createTransaction(transaction: TransactionType) {
     }
   }
 }
+
+export async function deleteTransaction(transactionId: string) {
+  const token = localStorage.getItem("token");
+
+  try {
+    await axios.delete(`${BASE_URL}/api/transactions/${transactionId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (err) {
+    if (axios.isAxiosError(err)) throw new Error(err.response?.data.message);
+  }
+}
+
+export async function updateTransaction(
+  transactionId: string,
+  formData: TransactionType
+) {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}/api/transactions/${transactionId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) throw new Error(err.message);
+  }
+}

@@ -12,7 +12,7 @@ interface TransactionContextType {
   page: number;
   setPage: Dispatch<SetStateAction<number>>;
   show: number;
-  incrementPage: (arr: TransactionType[]) => void;
+  incrementPage: (arg1: number, arg2: number) => void;
   decrementPage: () => void;
   isModalOpen: boolean;
   changeModalState: () => void;
@@ -32,8 +32,12 @@ export default function TransactionContext({
   const show = 6;
   const [activeEditTransaction, setActiveEditTransaction] = useState(null);
 
-  function incrementPage(arr: TransactionType[]) {
-    if (page + 1 > Math.floor(arr!.length / 6 + 1)) return;
+  function incrementPage(transactionsCount: number, currentCount: number) {
+    if (
+      transactionsCount === currentCount ||
+      page + 1 > Math.floor(transactionsCount / 6 + 1)
+    )
+      return;
     setPage((curr) => curr + 1);
   }
 

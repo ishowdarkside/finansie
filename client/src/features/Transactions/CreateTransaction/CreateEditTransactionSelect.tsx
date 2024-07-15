@@ -23,7 +23,9 @@ export default function CreateEditTransactionSelect({
           {firstDisabledOption}
         </option>
         {options?.map((e) => (
-          <option value={e}>{e}</option>
+          <option value={e} key={e}>
+            {e}
+          </option>
         ))}
       </select>
       {error && <span className={styles.errorMsg}>{error}</span>}
