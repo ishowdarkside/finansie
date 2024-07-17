@@ -1,0 +1,35 @@
+.transactionPanel {
+  background-color: #ffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 3rem 4rem 1rem 3rem;
+  position: relative;
+  min-height: 79rem;
+  max-height: 79rem;
+  overflow: auto;
+}
+
+.panelTitle {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.titleWrapper {
+  margin-bottom: 3rem;
+  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    font-size: 1.4rem;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-weight: 400;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #3c50e0;
+  }
+}
