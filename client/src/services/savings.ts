@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/url";
+import { SavingType } from "../types/SavingsType";
 
 export const getMySavings = async function () {
   const token = localStorage.getItem("token");
@@ -12,7 +13,7 @@ export const getMySavings = async function () {
       },
     });
 
-    return response.data.savings;
+    return response.data.savings as SavingType[];
   } catch (err) {
     if (axios.isAxiosError(err)) throw new Error(err.message);
     console.log(err);

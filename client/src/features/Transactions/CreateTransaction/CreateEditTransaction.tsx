@@ -1,16 +1,15 @@
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
+import { useTransactionContext } from "../../../context/TransactionContext";
 import {
   useCreateTransaction,
   useDeleteTransaction,
   useUpdateTransaction,
 } from "../../../hooks/useTransactions";
 import { TransactionType } from "../../../types/TransactionType";
-import styles from "./CreateTransaction.module.scss";
-import { useTransactionContext } from "../../../context/TransactionContext";
 import ReusableInput from "../../ReusableInput/ReusableInput";
-import CreateEditTransactionSelect from "./CreateEditTransactionSelect";
 import ReusableSelect from "../../ReusableSelect/ReusableSelect";
+import styles from "./CreateTransaction.module.scss";
 
 export default function CreateEditTransaction(): JSX.Element {
   const { changeModalState, setActiveEditTransaction, activeEditTransaction } =

@@ -11,6 +11,7 @@ import Protect from "./features/Protect/Protect";
 import Transactions from "./pages/app/Transactions/Transactions";
 import TransactionContext from "./context/TransactionContext";
 import Savings from "./pages/app/Savings/Savings";
+import SavingsContext from "./context/SavingsContext";
 
 const queryClient = new QueryClient();
 
@@ -47,7 +48,14 @@ function App() {
                   </TransactionContext>
                 }
               />
-              <Route path="savings" element={<Savings />} />
+              <Route
+                path="savings"
+                element={
+                  <SavingsContext>
+                    <Savings />
+                  </SavingsContext>
+                }
+              />
             </Route>
           </Routes>
         </BrowserRouter>
