@@ -14,12 +14,14 @@ interface InputTypes {
   register: UseFormRegister<any>;
   required: string | boolean;
   errors: FieldErrors;
+  disabled: boolean;
 }
 
 export default function Input({
   inputType,
   placeholder,
   register,
+  disabled = false,
   inputName,
   required = false,
   errors,
@@ -27,6 +29,7 @@ export default function Input({
   return (
     <div className={styles.inputWrapper}>
       <input
+        disabled={disabled}
         type={inputType}
         placeholder={placeholder}
         {...register(inputName, {

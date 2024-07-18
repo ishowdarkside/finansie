@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 export default function RegisterPanel(): JSX.Element {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm<RegistrationTypes>();
 
@@ -36,6 +36,7 @@ export default function RegisterPanel(): JSX.Element {
         <Input
           inputType="text"
           inputName="firstName"
+          disabled={isSubmitting}
           required="Please provide your first name!"
           placeholder="First Name"
           register={register}
@@ -45,6 +46,7 @@ export default function RegisterPanel(): JSX.Element {
         <Input
           inputType="text"
           inputName="lastName"
+          disabled={isSubmitting}
           required="Please provide your last name!"
           placeholder="Last Name"
           register={register}
@@ -54,6 +56,7 @@ export default function RegisterPanel(): JSX.Element {
         <Input
           inputType="email"
           inputName="email"
+          disabled={isSubmitting}
           required="Please provide your email!"
           placeholder="Email "
           register={register}
@@ -66,11 +69,13 @@ export default function RegisterPanel(): JSX.Element {
           required="Please provide your password!"
           placeholder="Password"
           register={register}
+          disabled={isSubmitting}
           errors={errors}
         />
 
         <Input
           inputType="password"
+          disabled={isSubmitting}
           inputName="passwordConfirm"
           required="Please confirm your password!"
           placeholder="Confirm password"
@@ -81,7 +86,9 @@ export default function RegisterPanel(): JSX.Element {
         <span className={styles.routeSwitch}>
           Already have an account? <Link to="/auth/login">Login here</Link>
         </span>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Just a moment..." : "Create account"}
+        </button>
       </form>
     </div>
   );

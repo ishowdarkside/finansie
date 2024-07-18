@@ -10,8 +10,9 @@ import { Link } from "react-router-dom";
 export default function LoginPanel(): JSX.Element {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
+    formState,
   } = useForm<LoginTypes>();
 
   const navigate = useNavigate();
@@ -37,7 +38,8 @@ export default function LoginPanel(): JSX.Element {
           inputType="email"
           inputName="email"
           required="Please provide your email!"
-          placeholder="Email "
+          placeholder="Email"
+          disabled={isSubmitting}
           register={register}
           errors={errors}
         />
@@ -45,6 +47,7 @@ export default function LoginPanel(): JSX.Element {
         <Input
           inputType="password"
           inputName="password"
+          disabled={isSubmitting}
           required="Please provide your password!"
           placeholder="Password"
           register={register}
@@ -55,7 +58,9 @@ export default function LoginPanel(): JSX.Element {
           Don't have an account yet?
           <Link to="/auth/register">Register here!</Link>
         </span>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Logging in..." : "Login"}
+        </button>
       </form>
     </div>
   );

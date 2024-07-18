@@ -1,0 +1,13 @@
+.errorMsg {
+  font-size: 1.2rem;
+  color: #d34053;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    margin-top: 0.3rem;
+  }
+}

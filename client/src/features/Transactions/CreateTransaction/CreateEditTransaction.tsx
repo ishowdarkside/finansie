@@ -6,10 +6,11 @@ import {
   useUpdateTransaction,
 } from "../../../hooks/useTransactions";
 import { TransactionType } from "../../../types/TransactionType";
-import CreateEditTransactionInput from "./CreateEditTransactionInput";
 import styles from "./CreateTransaction.module.scss";
-import CreateEditTransactionSelect from "./CreateEditTransactionSelect";
 import { useTransactionContext } from "../../../context/TransactionContext";
+import ReusableInput from "../../ReusableInput/ReusableInput";
+import CreateEditTransactionSelect from "./CreateEditTransactionSelect";
+import ReusableSelect from "../../ReusableSelect/ReusableSelect";
 
 export default function CreateEditTransaction(): JSX.Element {
   const { changeModalState, setActiveEditTransaction, activeEditTransaction } =
@@ -76,7 +77,7 @@ export default function CreateEditTransaction(): JSX.Element {
         </div>
         <div className={styles.separator}></div>
 
-        <CreateEditTransactionInput
+        <ReusableInput
           inputType="text"
           placeholder="Transaction's source"
           register={{
@@ -88,7 +89,7 @@ export default function CreateEditTransaction(): JSX.Element {
         />
 
         {!activeEditTransaction && (
-          <CreateEditTransactionInput
+          <ReusableInput
             inputType="number"
             placeholder="Transaction value"
             register={{
@@ -99,7 +100,7 @@ export default function CreateEditTransaction(): JSX.Element {
             error={errors.transaction_value?.message}
           />
         )}
-        <CreateEditTransactionSelect
+        <ReusableSelect
           error={errors.transaction_type && "Please select transaction type"}
           firstDisabledOption="Transaction Type"
           register={{
@@ -111,7 +112,7 @@ export default function CreateEditTransaction(): JSX.Element {
           defaultValue="null"
         />
 
-        <CreateEditTransactionSelect
+        <ReusableSelect
           error={errors.transaction_type && "Please select transaction status"}
           firstDisabledOption="Transaction status"
           register={{
