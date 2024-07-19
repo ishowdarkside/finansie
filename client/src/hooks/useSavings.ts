@@ -1,5 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createSaving, getMySavings } from "../services/savings";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { createSaving, deleteSaving, getMySavings } from "../services/savings";
 import { SavingType } from "../types/SavingsType";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
@@ -50,4 +55,20 @@ export function useCreateSaving() {
   });
 
   return { mutate, error, isPending };
+}
+
+export function useDeleteSaving() {
+  const queryClient = useQueryClient();
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: (id: string) => deleteSaving(id),
+    onError: (err) => {
+      toast.error(err.message);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["savings"] });
+      toast.success("Saving deleted - Saving Balance updated");
+    },
+  });
+
+  return { mutate, isPending };
 }

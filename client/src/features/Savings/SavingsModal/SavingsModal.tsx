@@ -5,7 +5,8 @@ import ReactDOM from "react-dom";
 import styles from "./SavingsModal.tsx.module.scss";
 import ReusableInput from "../../ReusableInput/ReusableInput";
 import ReusableSelect from "../../ReusableSelect/ReusableSelect";
-import { useCreateSaving } from "../../../hooks/useSavings";
+import { useCreateSaving, useDeleteSaving } from "../../../hooks/useSavings";
+import { deleteSaving } from "../../../services/savings";
 
 export default function SavingsModal(): JSX.Element {
   const { activeEditSaving, setActiveEditSaving, changeModalState } =
@@ -16,6 +17,8 @@ export default function SavingsModal(): JSX.Element {
     error,
     isPending: isCreating,
   } = useCreateSaving();
+
+  const { mutate: deleteMutation, isPending: isDeleting } = useDeleteSaving();
 
   const {
     register,
@@ -97,8 +100,12 @@ export default function SavingsModal(): JSX.Element {
             <button
               className={styles.deleteSaving}
               onClick={async () => {
-                changeModalState();
-                setActiveEditSaving(null);
+                deleteMutation(activeEditSaving._id, {
+                  onSuccess: () => {
+                    changeModalState();
+                    setActiveEditSaving(null);
+                  },
+                });
               }}
             >
               Delete savings

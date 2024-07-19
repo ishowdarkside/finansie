@@ -35,3 +35,17 @@ export const createSaving = async (formData: SavingType) => {
     if (axios.isAxiosError(err)) throw new Error(err.message);
   }
 };
+
+export const deleteSaving = async (id: string) => {
+  const token = localStorage.getItem("token");
+
+  try {
+    await axios.delete(`${BASE_URL}/api/savings/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (err) {
+    if (axios.isAxiosError(err)) throw new Error(err.message);
+  }
+};
