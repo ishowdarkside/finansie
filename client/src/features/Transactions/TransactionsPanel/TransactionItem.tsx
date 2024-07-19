@@ -28,7 +28,9 @@ export default function TransactionItem({
         {transaction.transaction_type.toUpperCase()}
       </span>
       <span>{transaction.transaction_value} KM</span>
-      <span>{transaction.status.toUpperCase()}</span>
+      <span className={styles[transaction.status]}>
+        {transaction.status.toUpperCase()}
+      </span>
       <button
         className={styles.editBtn}
         onClick={() => {

@@ -24,7 +24,9 @@ export default function LatestTransactionItem({
       </span>
       <span>{transaction.transaction_value}</span>
 
-      <span>{transaction.status.toUpperCase()}</span>
+      <span className={styles[transaction.status]}>
+        {transaction.status.toUpperCase()}
+      </span>
     </div>
   );
 }

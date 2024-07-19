@@ -15,7 +15,9 @@ export default function SavingsItem({
       <span className={styles.source}>{saving.source}</span>
       <span>{format(new Date(saving.saving_date), "dd/MM/yyyy")}</span>
       <span>{saving.saving_value} KM</span>
-      <span>{saving.status.toUpperCase()}</span>
+      <span className={styles[saving.status]}>
+        {saving.status.toUpperCase()}
+      </span>
       <button
         className={styles.editBtn}
         onClick={() => {

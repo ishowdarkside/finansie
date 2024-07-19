@@ -48,7 +48,7 @@ export default function CreateEditTransaction(): JSX.Element {
                 },
                 {
                   onSuccess: () => {
-                    changeModalState;
+                    changeModalState();
                     setActiveEditTransaction(null);
                   },
                 }
