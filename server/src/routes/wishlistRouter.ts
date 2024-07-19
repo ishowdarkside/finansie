@@ -4,6 +4,7 @@ import {
   addWishlistItem,
   deleteWishlistItem,
   updateSavedMoney,
+  updateWishlistItem,
 } from "../controllers/wishlistController";
 
 const router = express.Router();
@@ -12,6 +13,7 @@ router.use(protect);
 
 router.post("/", addWishlistItem);
 router.delete("/:wishlistItemId", deleteWishlistItem);
-router.patch("/:wishlistItemId", updateSavedMoney);
+router.patch("/topup/:wishlistItemId", updateSavedMoney);
+router.patch("/:wishlistId", updateWishlistItem);
 
 export default router;

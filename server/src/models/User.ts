@@ -70,6 +70,7 @@ const UserSchema = new mongoose.Schema<UserInterface>(
         wishlist_item: String,
         price: Number,
         total_saved: Number,
+        date_added: Date,
         priority: {
           type: String,
           enum: ["low", "medium", "high"],

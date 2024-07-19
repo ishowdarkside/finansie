@@ -7,7 +7,7 @@ import { NextFunction, Response } from "express";
 
 export const createSaving = catchAsync(
   async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
-    const { saving_date, saving_value, source, status } = req.body;
+    const { saving_value, source, status } = req.body;
 
     const user = await User.findById(req.user?.id);
     if (!user) return next(new AppError(401, "Please login!"));
@@ -19,10 +19,11 @@ export const createSaving = catchAsync(
       );
 
     user.available_balance -= saving_value;
+    user.saving_balance += saving_value;
 
     // create saving
     const createdSaving = await Saving.create({
-      saving_date,
+      saving_date: new Date(),
       saving_value,
       source,
       status,
@@ -68,5 +69,40 @@ export const deleteSaving = catchAsync(
     await Saving.findByIdAndDelete(savingId);
 
     res.status(204).json({});
+  }
+);
+
+export const getMySavings = catchAsync(
+  async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
+    const savings = await Saving.find({ saving_owner: req.user?.id }).sort({
+      saving_date: -1,
+    });
+
+    res.status(200).json({
+      status: "success",
+      savings,
+    });
+  }
+);
+
+export const updateSavings = catchAsync(
+  async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
+    const entries = Object.entries(req.body);
+    const saving = await Saving.findById(req.params.savingId);
+    if (!saving) return next(new AppError(404, "Transaction not found"));
+    const allowedFieldsToBeUpdated = ["status", "source"];
+
+    entries.forEach((entry) => {
+      // prevent unwanted field update
+      if (!allowedFieldsToBeUpdated.includes(entry[0])) return;
+      (saving as any)[entry[0]] = entry[1];
+    });
+
+    await saving.save();
+
+    res.status(200).json({
+      status: "success",
+      message: "Saving updated",
+    });
   }
 );

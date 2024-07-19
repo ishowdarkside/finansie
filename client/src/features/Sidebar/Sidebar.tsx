@@ -38,7 +38,7 @@ export default function Sidebar(): JSX.Element {
         </li>
         <li>
           <img src={ListIcon} />
-          <NavLink to="/app/wishlist">Budget Planning</NavLink>
+          <NavLink to="/app/budget-planning">Budget Planning</NavLink>
         </li>
 
         <li>

@@ -95,6 +95,10 @@ export const deleteTransaction = catchAsync(
     const user = await User.findById(req.user!.id);
     if (!user) return next(new AppError(401, "Unauthorized"));
 
+    if (transaction.transaction_type === "income")
+      user.available_balance -= transaction.transaction_value;
+    if (user.available_balance < 0) user.available_balance = 0;
+
     user.transactions = user.transactions.filter(
       (e) => e.toString() !== transaction.id
     );

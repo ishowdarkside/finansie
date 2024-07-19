@@ -13,7 +13,13 @@ export const addWishlistItem = catchAsync(
     if (!wishlist_item || !price || !priority)
       return next(new AppError(400, "Please provide all required fields"));
 
-    user.wishlist.push({ wishlist_item, price, priority, total_saved: 0 });
+    user.wishlist.push({
+      wishlist_item,
+      price,
+      priority,
+      total_saved: 0,
+      date_added: new Date(),
+    });
 
     await user.save({ validateBeforeSave: false });
     res.status(201).json({
@@ -33,17 +39,49 @@ export const deleteWishlistItem = catchAsync(
     const itemIndex = user.wishlist.findIndex((e) =>
       e._id?.equals(wishlistItemId)
     );
-    console.log(itemIndex);
+    const wishlistItem = user.wishlist[itemIndex];
 
     if (!itemIndex && itemIndex !== 0)
       return next(new AppError(404, "No item found"));
 
+    user.available_balance += wishlistItem.total_saved;
     user.wishlist.splice(itemIndex, 1);
     await user.save({ validateBeforeSave: false });
 
     res.status(200).json({
       status: "success",
       message: "Item deleted from wishlist",
+    });
+  }
+);
+
+const wishlistAllowedFieldsToUpdate = ["wishlist_item", "priority", "price"];
+
+export const updateWishlistItem = catchAsync(
+  async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
+    const entries = Object.entries(req.body);
+    const user = await User.findById(req.user?.id);
+
+    if (!user) return next(new AppError(401, "Please login"));
+
+    console.log(req.params.wishlistId);
+    const wishlistItem = user?.wishlist.find((e) =>
+      e._id?.equals(req.params.wishlistId)
+    );
+
+    if (!wishlistItem) return next(new AppError(404, "Transaction not found"));
+
+    entries.forEach((entry) => {
+      // prevent unwanted field update
+      if (!wishlistAllowedFieldsToUpdate.includes(entry[0])) return;
+      (wishlistItem as any)[entry[0]] = entry[1];
+    });
+
+    await user.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+      status: "success",
+      message: "Transaction updated",
     });
   }
 );

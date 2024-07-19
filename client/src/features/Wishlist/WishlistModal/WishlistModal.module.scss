@@ -1,0 +1,121 @@
+.wishlistForm {
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 1.5rem 2.6rem;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-grow: 1;
+  position: relative;
+  max-width: 60rem;
+  input {
+    outline: none;
+    border: 1px solid #e2e8f0;
+    background-color: transparent;
+    padding: 1.3rem 2.2rem;
+    border-radius: 4px;
+
+    &:placeholder {
+      color: #64748b;
+      font-weight: 400;
+    }
+  }
+
+  select {
+    outline: none;
+    border: 1px solid #e2e8f0;
+    background-color: transparent;
+    padding: 1.3rem 2.2rem;
+    border-radius: 4px;
+
+    &:placeholder {
+      color: #64748b;
+      font-weight: 400;
+    }
+  }
+
+  button {
+    border-radius: 4px;
+    background-color: #3c50e0;
+    color: #ffff;
+    padding: 1.3rem;
+    cursor: pointer;
+    border: none;
+  }
+}
+
+.formHeading {
+  font-size: 1.6rem;
+}
+
+.separator {
+  height: 1px;
+  width: 100%;
+  background-color: #c7c7c7;
+  position: absolute;
+  left: 0;
+  top: 6rem;
+}
+
+.overlay {
+  position: -webkit-sticky; /* for Safari */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(55, 55, 55, 0.15);
+
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+
+  button {
+    padding: 6px 12px;
+    font-size: 1.3rem;
+  }
+}
+
+.errorMsg {
+  font-size: 1.2rem;
+  color: #d34053;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    margin-top: 0.3rem;
+  }
+}
+
+.btnWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+.deleteWishlistItem {
+  background-color: transparent !important;
+  color: #d34053 !important;
+  border: 1px solid #d34053 !important;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #d34053 !important;
+    color: #ffff !important;
+  }
+}

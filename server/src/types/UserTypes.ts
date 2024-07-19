@@ -30,6 +30,7 @@ export interface UserInterface {
       _id?: mongoose.Types.ObjectId;
       wishlist_item: string;
       price: number;
+      date_added: Date;
       total_saved: number;
       priority: "low" | "medium" | "high";
     }

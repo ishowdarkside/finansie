@@ -16,7 +16,10 @@ const savingsSchema = new mongoose.Schema<SavingType>({
   },
   status: {
     type: String,
-    enum: ["Completed", "Processing", "Canceled"],
+    enum: ["completed", "processing", "canceled"],
+  },
+  saving_date: {
+    type: Date,
   },
 });
 

@@ -12,6 +12,8 @@ import Transactions from "./pages/app/Transactions/Transactions";
 import TransactionContext from "./context/TransactionContext";
 import Savings from "./pages/app/Savings/Savings";
 import SavingsContext from "./context/SavingsContext";
+import Wishlist from "./pages/app/Wishlist/Wishlist";
+import WishlistContext from "./context/WishlistContext";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +56,14 @@ function App() {
                   <SavingsContext>
                     <Savings />
                   </SavingsContext>
+                }
+              />
+              <Route
+                path="wishlist"
+                element={
+                  <WishlistContext>
+                    <Wishlist />
+                  </WishlistContext>
                 }
               />
             </Route>

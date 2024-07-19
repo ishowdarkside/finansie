@@ -1,4 +1,5 @@
 import { TransactionType } from "./TransactionType";
+import { WishlistItemTypes } from "./WishlistItemType";
 
 export interface UserInterface {
   id: string;
@@ -23,15 +24,7 @@ export interface UserInterface {
 
   budget_plan: string[];
 
-  wishlist: [
-    {
-      _id?: string;
-      wishlist_item: string;
-      price: number;
-      total_saved: number;
-      priority: "low" | "medium" | "high";
-    }
-  ];
+  wishlist: WishlistItemTypes[];
 
   loan: [
     {
