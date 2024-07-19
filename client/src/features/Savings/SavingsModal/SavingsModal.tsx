@@ -5,10 +5,17 @@ import ReactDOM from "react-dom";
 import styles from "./SavingsModal.tsx.module.scss";
 import ReusableInput from "../../ReusableInput/ReusableInput";
 import ReusableSelect from "../../ReusableSelect/ReusableSelect";
+import { useCreateSaving } from "../../../hooks/useSavings";
 
 export default function SavingsModal(): JSX.Element {
   const { activeEditSaving, setActiveEditSaving, changeModalState } =
     useSavingsContext();
+
+  const {
+    mutate: createMutation,
+    error,
+    isPending: isCreating,
+  } = useCreateSaving();
 
   const {
     register,
@@ -25,7 +32,14 @@ export default function SavingsModal(): JSX.Element {
 
   return ReactDOM.createPortal(
     <div className={styles.overlay}>
-      <form className={styles.savingForm} onSubmit={handleSubmit((data) => {})}>
+      <form
+        className={styles.savingForm}
+        onSubmit={handleSubmit((data) => {
+          activeEditSaving
+            ? null
+            : createMutation(data, { onSuccess: changeModalState });
+        })}
+      >
         <div className={styles.titleWrapper}>
           <h2 className={styles.formHeading}>
             {activeEditSaving ? "Edit saving" : "Add saving"}
