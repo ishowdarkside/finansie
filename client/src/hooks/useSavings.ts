@@ -4,7 +4,12 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { createSaving, deleteSaving, getMySavings } from "../services/savings";
+import {
+  createSaving,
+  deleteSaving,
+  getMySavings,
+  updateSaving,
+} from "../services/savings";
 import { SavingType } from "../types/SavingsType";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
@@ -42,6 +47,7 @@ export function useCreateSaving() {
     },
 
     onError: (err, variables, context) => {
+      console.log(err);
       toast.error(err.message);
       console.log(variables);
       queryClient.setQueryData(["savings"], context?.previousSavings);
@@ -67,6 +73,23 @@ export function useDeleteSaving() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["savings"] });
       toast.success("Saving deleted - Saving Balance updated");
+    },
+  });
+
+  return { mutate, isPending };
+}
+
+export function useUpdateSaving() {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: ({ id, formData }: { id: string; formData: SavingType }) =>
+      updateSaving(id, formData),
+    onError: (err) => toast.error(err.message),
+    onSuccess: (res) => {
+      if (res.status === "fail") return toast.error(res.message);
+      toast.success(res.message);
+      return queryClient.invalidateQueries({ queryKey: ["savings"] });
     },
   });
 

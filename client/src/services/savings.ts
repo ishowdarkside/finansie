@@ -15,7 +15,7 @@ export const getMySavings = async () => {
 
     return response.data.savings as SavingType[];
   } catch (err) {
-    if (axios.isAxiosError(err)) throw new Error(err.message);
+    if (axios.isAxiosError(err)) throw new Error(err.response?.data.message);
     console.log(err);
   }
 };
@@ -32,7 +32,7 @@ export const createSaving = async (formData: SavingType) => {
 
     return response.data;
   } catch (err) {
-    if (axios.isAxiosError(err)) throw new Error(err.message);
+    if (axios.isAxiosError(err)) throw new Error(err.response?.data.message);
   }
 };
 
@@ -46,6 +46,27 @@ export const deleteSaving = async (id: string) => {
       },
     });
   } catch (err) {
-    if (axios.isAxiosError(err)) throw new Error(err.message);
+    if (axios.isAxiosError(err)) throw new Error(err.response?.data.message);
+  }
+};
+
+export const updateSaving = async (savingId: string, formData: SavingType) => {
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}/api/savings/${savingId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) throw new Error(err.response?.data.message);
   }
 };

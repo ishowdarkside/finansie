@@ -1,24 +1,23 @@
+import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import { useSavingsContext } from "../../../context/SavingsContext";
+import {
+  useCreateSaving,
+  useDeleteSaving,
+  useUpdateSaving,
+} from "../../../hooks/useSavings";
 import { SavingType } from "../../../types/SavingsType";
-import ReactDOM from "react-dom";
-import styles from "./SavingsModal.tsx.module.scss";
 import ReusableInput from "../../ReusableInput/ReusableInput";
 import ReusableSelect from "../../ReusableSelect/ReusableSelect";
-import { useCreateSaving, useDeleteSaving } from "../../../hooks/useSavings";
-import { deleteSaving } from "../../../services/savings";
+import styles from "./SavingsModal.tsx.module.scss";
 
 export default function SavingsModal(): JSX.Element {
   const { activeEditSaving, setActiveEditSaving, changeModalState } =
     useSavingsContext();
 
-  const {
-    mutate: createMutation,
-    error,
-    isPending: isCreating,
-  } = useCreateSaving();
-
+  const { mutate: createMutation, isPending: isCreating } = useCreateSaving();
   const { mutate: deleteMutation, isPending: isDeleting } = useDeleteSaving();
+  const { mutate: updateMutation, isPending: isUpdating } = useUpdateSaving();
 
   const {
     register,
@@ -39,7 +38,10 @@ export default function SavingsModal(): JSX.Element {
         className={styles.savingForm}
         onSubmit={handleSubmit((data) => {
           activeEditSaving
-            ? null
+            ? updateMutation(
+                { id: activeEditSaving._id, formData: data },
+                { onSuccess: changeModalState }
+              )
             : createMutation(data, { onSuccess: changeModalState });
         })}
       >
@@ -95,11 +97,15 @@ export default function SavingsModal(): JSX.Element {
         />
 
         <div className={styles.btnWrapper}>
-          <button>{activeEditSaving ? "Save changes" : "Add saving"}</button>
+          <button disabled={isCreating || isUpdating}>
+            {activeEditSaving ? "Save changes" : "Add saving"}
+          </button>
           {activeEditSaving && (
             <button
               className={styles.deleteSaving}
-              onClick={async () => {
+              disabled={isDeleting}
+              onClick={async (e) => {
+                e.preventDefault();
                 deleteMutation(activeEditSaving._id, {
                   onSuccess: () => {
                     changeModalState();

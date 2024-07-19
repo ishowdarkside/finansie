@@ -33,3 +33,21 @@
     background-color: #3c50e0;
   }
 }
+
+.emptyPanel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 120rem;
+  width: 100%;
+
+  span {
+    font-size: 8rem;
+    line-height: 8rem;
+    padding: 0 1rem;
+    text-align: center;
+
+    display: block;
+  }
+}

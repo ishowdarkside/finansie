@@ -23,9 +23,10 @@ export default function BalancePanel({
       </span>
 
       <span className={styles.balanceAmount}>
-        {balanceType === "available_balance" && available_balance}
-        {balanceType === "savings" && saving_balance}
-        {balanceType === "loan" && loan_balance} KM
+        {balanceType === "available_balance" &&
+          available_balance.toLocaleString("en-US")}
+        {balanceType === "savings" && saving_balance.toLocaleString("en-US")}
+        {balanceType === "loan" && loan_balance.toLocaleString("en-US")} KM
       </span>
     </div>
   );

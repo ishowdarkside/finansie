@@ -1,0 +1,49 @@
+.paginationPanel {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: absolute;
+  bottom: 3rem;
+  width: 100%;
+
+  max-width: 125rem;
+
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btnWrapper {
+  display: flex;
+  gap: 0.5rem;
+
+  button {
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    background-color: #3c50e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+    img {
+      max-width: 2rem;
+    }
+  }
+}
+
+.lowerOpacity {
+  opacity: 0.5;
+}
+
+.transactionCount {
+  flex-grow: 1;
+  text-align: center;
+}
