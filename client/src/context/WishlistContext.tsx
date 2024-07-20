@@ -18,6 +18,8 @@ interface WishlistContextType {
   changeModalState: () => void;
   activeEditWishlist: WishlistItemTypes | null;
   setActiveEditWishlist: Dispatch<SetStateAction<any>>;
+  isOpenTopup: boolean;
+  changeTopupModalState: () => void;
 }
 
 const context = createContext<WishlistContextType | null>(null);
@@ -25,6 +27,7 @@ const context = createContext<WishlistContextType | null>(null);
 export default function WishlistContext({ children }: { children: ReactNode }) {
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOpenTopup, setIsOpenTopup] = useState(false);
   const show = 6;
   const [activeEditWishlist, setActiveEditWishlist] = useState(null);
 
@@ -46,10 +49,15 @@ export default function WishlistContext({ children }: { children: ReactNode }) {
     setIsModalOpen((curr) => !curr);
   }
 
+  function changeTopupModalState() {
+    setIsOpenTopup((curr) => !curr);
+  }
   return (
     <context.Provider
       value={{
         page,
+        isOpenTopup,
+        changeTopupModalState,
         setPage,
         isModalOpen,
         changeModalState,

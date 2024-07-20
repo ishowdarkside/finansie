@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { WishlistItemTypes } from "../../../types/WishlistItemType";
 import styles from "./WishlistItem.module.scss";
 import EditIcon from "../../../assets/editing.png";
-import DollarSign from "../../../assets/dollar.svg";
+import DollarSign from "../../../assets/dollar.png";
 import { useWishlistContext } from "../../../context/WishlistContext";
 
 export default function WishlistItem({
@@ -10,7 +10,8 @@ export default function WishlistItem({
 }: {
   wishlistItem: WishlistItemTypes;
 }) {
-  const { setActiveEditWishlist, changeModalState } = useWishlistContext();
+  const { setActiveEditWishlist, changeModalState, changeTopupModalState } =
+    useWishlistContext();
   const percentageSaved =
     wishlistItem.total_saved / wishlistItem.price > 1
       ? 100
@@ -44,7 +45,7 @@ export default function WishlistItem({
         >
           <img src={EditIcon} />
         </button>
-        <button className={styles.editBtn}>
+        <button className={styles.editBtn} onClick={changeTopupModalState}>
           <img src={DollarSign} />
         </button>
       </div>

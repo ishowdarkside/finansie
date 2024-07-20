@@ -82,7 +82,7 @@ export default function WishlistModal(): JSX.Element {
           }}
           error={errors.wishlist_item?.message}
           placeholder="Price"
-          inputType="numuber"
+          inputType="number"
         />
 
         <ReusableSelect
@@ -95,7 +95,7 @@ export default function WishlistModal(): JSX.Element {
         />
 
         <div className={styles.btnWrapper}>
-          <button disabled={isCreating}>
+          <button disabled={isCreating || isUpdating}>
             {activeEditWishlist ? "Save changes" : "Add transaction"}
           </button>
           {activeEditWishlist && (
