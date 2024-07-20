@@ -93,6 +93,7 @@ export const updateSavedMoney = catchAsync(
 
     const { wishlistItemId } = req.params;
     const { saved_balance } = req.body;
+
     if (saved_balance <= 0)
       return next(
         new AppError(400, "Saved balance cannot be less or equal to null")
