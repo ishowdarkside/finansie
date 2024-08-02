@@ -44,3 +44,17 @@ export const updateWishlistItem = async (
       );
   }
 };
+
+export async function deleteWishlistItem(id: string) {
+  const token = localStorage.getItem("token");
+
+  try {
+    await axios.delete(`${BASE_URL}/api/wishlist/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (err) {
+    if (axios.isAxiosError(err)) throw new Error(err.message);
+  }
+}
