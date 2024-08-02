@@ -14,6 +14,7 @@ import Savings from "./pages/app/Savings/Savings";
 import SavingsContext from "./context/SavingsContext";
 import Wishlist from "./pages/app/Wishlist/Wishlist";
 import WishlistContext from "./context/WishlistContext";
+import Budget from "./pages/app/Budget/Budget";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ function App() {
                   </WishlistContext>
                 }
               />
+              <Route path="budget-planning" element={<Budget />} />
             </Route>
           </Routes>
         </BrowserRouter>

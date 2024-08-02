@@ -9,9 +9,8 @@ export default function LatestTransactions(): JSX.Element {
   const navigate = useNavigate();
 
   if (isPending) return <h1>LOADING...</h1>;
-  if (!transactions || transactions.length === 0)
-    return <span>no transaction</span>;
-  const latestFiveTransactions = transactions.slice(0, 5);
+
+  const latestFiveTransactions = transactions?.slice(0, 5);
 
   return (
     <div className={styles.transactionPanel}>
@@ -20,7 +19,7 @@ export default function LatestTransactions(): JSX.Element {
         <button onClick={() => navigate("/app/transactions")}>View More</button>
       </div>
       <TransactionPlaceholderPanel />
-      {latestFiveTransactions.slice(0, 5).map((transaction) => (
+      {latestFiveTransactions?.slice(0, 5).map((transaction) => (
         <LatestTransactionItem
           transaction={transaction}
           key={transaction._id}
