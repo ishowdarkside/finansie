@@ -11,15 +11,14 @@ export default function LatestTransactions(): JSX.Element {
   const { changeModalState } = useTransactionContext();
 
   if (isPending) return <h1>LOADING...</h1>;
-  if (!transactions || transactions.length === 0)
-    return <span>no transaction</span>;
 
-  let paginatedTransactions = transactions.slice(
+
+  let paginatedTransactions = transactions?.slice(
     (page - 1) * show,
     show * page
   );
 
-  let currentCount = transactions.slice(0, show * page).length;
+  let currentCount = transactions?.slice(0, show * page).length;
 
   return (
     <>
@@ -30,14 +29,14 @@ export default function LatestTransactions(): JSX.Element {
         </div>
 
         <TransactionPlaceholderPanel />
-        {paginatedTransactions.map((transaction) => (
+        {paginatedTransactions?.map((transaction) => (
           <TransactionItem transaction={transaction} key={transaction._id} />
         ))}
-        <TransactionPagination
+         {transactions &&  transactions.length > show && currentCount && <TransactionPagination
           transactionsLength={transactions.length}
           page={page}
           currentCount={currentCount}
-        />
+        />}
       </div>
     </>
   );

@@ -6,7 +6,7 @@ import SavingsPagination from "../SavingsPagination/SavingsPagination";
 import styles from "./SavingsPanel.module.scss";
 
 export default function SavingsPanel() {
-  const { data: savings, isPending: isPendingSavings } = useGetSavings();
+  const { data: savings, isPending: isPendingSavings, } = useGetSavings();
   const { changeModalState, page, show } = useSavingsContext();
   if (isPendingSavings) return <h1>LOADING...</h1>;
   if (!savings) return null;
@@ -33,11 +33,11 @@ export default function SavingsPanel() {
       {paginatedSavings?.map((e) => (
         <SavingsItem saving={e} key={e._id} />
       ))}
-      <SavingsPagination
+      {savings.length > show && <SavingsPagination
         savingsLength={savings?.length!}
         page={page}
         currentCount={currentCount}
-      />
+      />}
     </div>
   );
 }
