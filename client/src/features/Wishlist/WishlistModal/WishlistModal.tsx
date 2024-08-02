@@ -5,7 +5,7 @@ import { WishlistItemTypes } from "../../../types/WishlistItemType";
 import { useForm } from "react-hook-form";
 import ReusableInput from "../../ReusableInput/ReusableInput";
 import ReusableSelect from "../../ReusableSelect/ReusableSelect";
-import {
+import useDeleteWishlistItem, {
   useCreateWishlist,
   useUpdateWishlist,
 } from "../../../hooks/useWishlist";
@@ -15,6 +15,8 @@ export default function WishlistModal(): JSX.Element {
     useWishlistContext();
   const { mutate: createMutation, isPending: isCreating } = useCreateWishlist();
   const { mutate: updateMutation, isPending: isUpdating } = useUpdateWishlist();
+  const { mutate: deleteMutation, isPending: isDeleting } =
+    useDeleteWishlistItem();
 
   const {
     register,
@@ -53,7 +55,8 @@ export default function WishlistModal(): JSX.Element {
             {activeEditWishlist ? "Edit Transacton" : "Add Transaction"}
           </h2>
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               setActiveEditWishlist(null);
               changeModalState();
             }}
@@ -101,11 +104,15 @@ export default function WishlistModal(): JSX.Element {
           {activeEditWishlist && (
             <button
               className={styles.deleteWishlistItem}
+              disabled={isDeleting}
               onClick={async (e) => {
                 e.preventDefault();
+                deleteMutation(activeEditWishlist._id, {
+                  onSuccess: () => changeModalState(),
+                });
               }}
             >
-              Delete transaction
+              Delete wishlist item
             </button>
           )}
         </div>

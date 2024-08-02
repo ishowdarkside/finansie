@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import styles from "./TopupModal.module.scss";
 import ReusableInput from "../../ReusableInput/ReusableInput";
+import { useWishlistContext } from "../../../context/WishlistContext";
 
 export default function TopupModal() {
   const {
@@ -8,6 +9,8 @@ export default function TopupModal() {
     handleSubmit,
     formState: { errors },
   } = useForm<{ saved_balance: number }>();
+
+  const { changeTopupModalState } = useWishlistContext();
   return (
     <div className={styles.overlay}>
       <form
@@ -16,7 +19,14 @@ export default function TopupModal() {
       >
         <div className={styles.titleWrapper}>
           <h2 className={styles.formHeading}>Topup item saving</h2>
-          <button onClick={() => {}}>Close</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              changeTopupModalState();
+            }}
+          >
+            Close
+          </button>
         </div>
         <div className={styles.separator}></div>
         <ReusableInput

@@ -1,7 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
-import { createWishlistItem, updateWishlistItem } from "../services/wishlist";
+import {
+  createWishlistItem,
+  deleteWishlistItem,
+  updateWishlistItem,
+} from "../services/wishlist";
 import { WishlistItemTypes } from "../types/WishlistItemType";
 import { UserInterface } from "../types/UserTypes";
 import { useUser } from "./useAuth";
@@ -50,6 +54,23 @@ export function useUpdateWishlist() {
     onSuccess: async (res) => {
       toast.success(res.message);
       queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
+  });
+
+  return { mutate, isPending };
+}
+
+export default function useDeleteWishlistItem() {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (itemId: string) => deleteWishlistItem(itemId),
+    onSuccess: () => {
+      toast.success("Item deleted.");
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
+    onError: (err) => {
+      toast.error(err.message);
     },
   });
 
