@@ -5,17 +5,10 @@ import EditIcon from "../../../assets/editing.png";
 import DollarSign from "../../../assets/dollar.png";
 import { useWishlistContext } from "../../../context/WishlistContext";
 
-export default function WishlistItem({
-  wishlistItem,
-}: {
-  wishlistItem: WishlistItemTypes;
-}) {
-  const { setActiveEditWishlist, changeModalState, changeTopupModalState } =
-    useWishlistContext();
+export default function WishlistItem({ wishlistItem }: { wishlistItem: WishlistItemTypes }) {
+  const { setActiveEditWishlist, changeModalState, changeTopupModalState } = useWishlistContext();
   const percentageSaved =
-    wishlistItem.total_saved / wishlistItem.price > 1
-      ? 100
-      : (wishlistItem.total_saved / wishlistItem.price) * 100;
+    wishlistItem.total_saved / wishlistItem.price > 1 ? 100 : (wishlistItem.total_saved / wishlistItem.price) * 100;
 
   return (
     <div className={styles.wishlistItem}>
@@ -23,18 +16,13 @@ export default function WishlistItem({
       <span>{format(new Date(wishlistItem.date_added), "dd/MM/yyyy")}</span>
       <div className={styles.progressBarHolder}>
         <div className={styles.fullFilledBar}>
-          <div
-            className={styles.actualProgress}
-            style={{ width: `${Math.round(percentageSaved)}%` }}
-          ></div>
+          <div className={styles.actualProgress} style={{ width: `${Math.round(percentageSaved)}%` }}></div>
         </div>
         <span className={styles.status}>
           {wishlistItem.total_saved} KM / {wishlistItem.price} KM
         </span>
       </div>
-      <span className={styles[wishlistItem.priority]}>
-        {wishlistItem.priority.toUpperCase()}
-      </span>
+      <span className={styles[wishlistItem.priority]}>{wishlistItem.priority.toUpperCase()}</span>
       <div className={styles.absoluteBtnWrapper}>
         <button
           className={styles.editBtn}
@@ -45,7 +33,13 @@ export default function WishlistItem({
         >
           <img src={EditIcon} />
         </button>
-        <button className={styles.editBtn} onClick={changeTopupModalState}>
+        <button
+          className={styles.editBtn}
+          onClick={() => {
+            changeTopupModalState();
+            setActiveEditWishlist(wishlistItem);
+          }}
+        >
           <img src={DollarSign} />
         </button>
       </div>

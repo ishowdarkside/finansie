@@ -66,7 +66,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/server.js",
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts  npm run dev"
   },
   "keywords": [],
   "author": "",

@@ -18,30 +18,20 @@ export const createWishlistItem = async (formData: WishlistItemTypes) => {
   }
 };
 
-export const updateWishlistItem = async (
-  id: string,
-  formData: WishlistItemTypes
-) => {
+export const updateWishlistItem = async (id: string, formData: WishlistItemTypes) => {
   const token = localStorage.getItem("token");
 
   try {
-    const response = await axios.patch(
-      `${BASE_URL}/api/wishlist/${id}`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.patch(`${BASE_URL}/api/wishlist/${id}`, formData, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return response.data;
   } catch (err) {
-    if (axios.isAxiosError(err))
-      throw new Error(
-        err.response?.data.message || "Something went really wrong"
-      );
+    if (axios.isAxiosError(err)) throw new Error(err.response?.data.message || "Something went really wrong");
   }
 };
 
@@ -54,6 +44,23 @@ export async function deleteWishlistItem(id: string) {
         Authorization: `Bearer ${token}`,
       },
     });
+  } catch (err) {
+    if (axios.isAxiosError(err)) throw new Error(err.message);
+  }
+}
+
+export async function topupWishlistItem(id: string, saved_balance: number) {
+  const jwt = localStorage.getItem("token");
+  try {
+    const res = await axios.patch(
+      `${BASE_URL}/api/wishlist/topup/${id}`,
+      {
+        saved_balance: +saved_balance,
+      },
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+
+    return res.data;
   } catch (err) {
     if (axios.isAxiosError(err)) throw new Error(err.message);
   }

@@ -1,17 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { v4 as uuidv4 } from "uuid";
-import {
-  createWishlistItem,
-  deleteWishlistItem,
-  updateWishlistItem,
-} from "../services/wishlist";
+import { createWishlistItem, deleteWishlistItem, topupWishlistItem, updateWishlistItem } from "../services/wishlist";
 import { WishlistItemTypes } from "../types/WishlistItemType";
-import { UserInterface } from "../types/UserTypes";
 import { useUser } from "./useAuth";
+import axios from "axios";
+import { BASE_URL } from "../utils/url";
 
 export function useGetMyWishlist() {
-  const queryClient = useQueryClient();
   const { data: user } = useUser();
 
   const { data } = useQuery({
@@ -43,15 +38,25 @@ export function useUpdateWishlist() {
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: ({
-      id,
-      formData,
-    }: {
-      id: string;
-      formData: WishlistItemTypes;
-    }) => updateWishlistItem(id, formData),
+    mutationFn: ({ id, formData }: { id: string; formData: WishlistItemTypes }) => updateWishlistItem(id, formData),
     onError: (err) => toast.error(err.message),
     onSuccess: async (res) => {
+      toast.success(res.message);
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
+  });
+
+  return { mutate, isPending };
+}
+
+export function useTopupWishlistItem() {
+  const queryClient = useQueryClient();
+  const { mutate, isPending } = useMutation({
+    mutationFn: async ({ saved_balance, id }: { saved_balance: number; id: string }) => {
+      return await topupWishlistItem(id, saved_balance);
+    },
+
+    onSuccess: (res) => {
       toast.success(res.message);
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
