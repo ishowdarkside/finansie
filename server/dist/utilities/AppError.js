@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class AppError extends Error {
+    constructor(statusCode, message) {
+        super(message);
+        this.statusCode = statusCode;
+        this.isOperational = true;
+    }
+    getStatusCode() {
+        return this.statusCode;
+    }
+    getIsOperational() {
+        return this.isOperational;
+    }
+}
+exports.default = AppError;
