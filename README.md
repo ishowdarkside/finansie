@@ -1,3 +1,9 @@
+Web application url: https://finansie.netlify.app
+Credentials: 
+- Email: test@gmail.com
+- Password: test123
+
+
 Finansie - Web application for managing finances
 Technology stack - React, NodeJS + Express, MongoDB
 
