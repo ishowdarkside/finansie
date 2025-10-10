@@ -12,7 +12,6 @@ export default function LoginPanel(): JSX.Element {
     register,
     formState: { errors, isSubmitting },
     handleSubmit,
-    formState,
   } = useForm<LoginTypes>();
 
   const navigate = useNavigate();

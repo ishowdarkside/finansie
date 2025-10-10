@@ -6,17 +6,13 @@ import { useWishlistContext } from "../../../context/WishlistContext";
 export default function TopupModal() {
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<{ saved_balance: number }>();
 
   const { changeTopupModalState } = useWishlistContext();
   return (
     <div className={styles.overlay}>
-      <form
-        className={styles.wishlistForm}
-        onSubmit={handleSubmit((data) => {})}
-      >
+      <form className={styles.wishlistForm}>
         <div className={styles.titleWrapper}>
           <h2 className={styles.formHeading}>Topup item saving</h2>
           <button

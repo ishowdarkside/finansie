@@ -4,7 +4,7 @@ import { months } from "../../../utils/constants";
 import BudgetPlanningItem from "./BudgetPlanningItem";
 import styles from "./styles.module.scss";
 export default function BudgetPlanning(): JSX.Element {
-  const { data, isPending, error } = useLatestBudget();
+  const { data, isPending } = useLatestBudget();
 
   if (isPending) return <h1>LOADING...</h1>;
   const currentMonth = months[new Date().getMonth()];

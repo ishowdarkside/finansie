@@ -1,9 +1,4 @@
-import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createSaving,
   deleteSaving,
@@ -65,7 +60,7 @@ export function useCreateSaving() {
 
 export function useDeleteSaving() {
   const queryClient = useQueryClient();
-  const { mutate, isPending, error } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (id: string) => deleteSaving(id),
     onError: (err) => {
       toast.error(err.message);

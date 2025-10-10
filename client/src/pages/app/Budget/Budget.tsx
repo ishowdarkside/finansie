@@ -1,8 +1,10 @@
-import MonthPicker from '../../../features/Budget/MonthPicker/MonthPicker';
-import styles from './Budget.module.scss';
+import MonthPicker from "../../../features/Budget/MonthPicker/MonthPicker";
 
 export default function Budget() {
-    return <div>OVO JE 
-        <MonthPicker />
+  return (
+    <div>
+      OVO JE
+      <MonthPicker />
     </div>
+  );
 }

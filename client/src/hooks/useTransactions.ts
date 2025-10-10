@@ -43,7 +43,7 @@ export function useCreateTransaction() {
       return { previousTransactions };
     },
 
-    onError: (err: Error, newTransaction, context) => {
+    onError: (err: Error, _, context) => {
       toast.error(err.message);
       queryClient.setQueryData(["transactions"], context?.previousTransactions);
     },

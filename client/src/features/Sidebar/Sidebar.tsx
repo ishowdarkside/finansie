@@ -43,7 +43,9 @@ export default function Sidebar(): JSX.Element {
 
         <li>
           <img src={LogoutIcon} />
-          <NavLink to="/logout">Logout</NavLink>
+          <NavLink to="/" onClick={() => localStorage.clear()}>
+            Logout
+          </NavLink>
         </li>
       </ul>
     </div>
