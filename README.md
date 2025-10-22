@@ -13,10 +13,12 @@ To run locally:
 1. Navigate to client folder, run "npm i", then "npm run dev"
 2. Navigate to server folder, run "npm i", then "npm run dev"
 
-3. ![Screenshot_7](https://github.com/user-attachments/assets/5262472d-6a90-4f08-a825-7775b7828d2a)
-![Screenshot_6](https://github.com/user-attachments/assets/65765a3f-716e-40c5-8d0b-438cfacce777)
-![Screenshot_5](https://github.com/user-attachments/assets/2d81d4fd-3f99-4f15-8bad-3883bdb9eff4)
-![Screenshot_4](https://github.com/user-attachments/assets/c1179319-4d37-485c-9bf8-385a2d20d77f)
-![Screenshot_3](https://github.com/user-attachments/assets/290af454-419d-435c-b5b7-796c42fea65b)
-![Screenshot_2](https://github.com/user-attachments/assets/3408871e-9bd5-4e71-8ad5-d1be87c9be69)
-![Screenshot_1](https://github.com/user-attachments/assets/ad2a94c9-164a-4eb1-9656-bdb0499f9765)
+
+<img width="2032" height="1094" alt="Screenshot 2025-10-22 at 12 49 37" src="https://github.com/user-attachments/assets/9b22a356-87ac-4e18-9fe6-72a6262c73e9" />
+<img width="2032" height="1094" alt="Screenshot 2025-10-22 at 12 49 31" src="https://github.com/user-attachments/assets/09021135-de77-44a0-bb51-8b5ccb1a5910" />
+<img width="2032" height="1094" alt="Screenshot 2025-10-22 at 12 49 27" src="https://github.com/user-attachments/assets/c73b9d26-e9b0-411a-a1bf-36b1cad1954d" />
+<img width="2032" height="1094" alt="Screenshot 2025-10-22 at 12 49 20" src="https://github.com/user-attachments/assets/8a907c77-d3c7-48f9-841a-c8dd2d4aa888" />
+<img width="1910" height="999" alt="Screenshot 2025-10-22 at 12 48 54" src="https://github.com/user-attachments/assets/12726630-06a2-49f4-bf38-4ae2d40483be" />
+<img width="1909" height="960" alt="Screenshot 2025-10-22 at 12 48 29" src="https://github.com/user-attachments/assets/816b967a-55e3-431c-8219-940a8958e8ea" />
+<img width="1914" height="958" alt="Screenshot 2025-10-22 at 12 48 23" src="https://github.com/user-attachments/assets/02d7c305-556a-4286-b5af-5074515e6502" />
+<img width="1905" height="953" alt="Screenshot 2025-10-22 at 12 48 11" src="https://github.com/user-attachments/assets/046aabf9-3698-420d-9dec-d1ea6dd7f186" />
